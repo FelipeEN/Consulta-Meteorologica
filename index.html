@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Consulte as condições meteorológicas atuais e a previsão para as próximas horas.">
+  <title>Consulta Meteorológica</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Bibliotecas externas utilizadas pelo projeto -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body class="app-shell">
+  <div class="w-full max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 pb-12">
+    <header class="flex items-center justify-between py-7 sm:py-9 border-b border-[#d6e2d6]">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-[#153e38] text-[#d7ef8d] flex items-center justify-center" aria-hidden="true">
+          <i data-lucide="cloud-sun" class="w-6 h-6"></i>
+        </div>
+        <span class="font-bold tracking-tight brand-name">tempo aberto</span>
+      </div>
+      <span class="hidden sm:inline-block rounded-full border border-[#cbdccc] px-4 py-2 header-note">O céu, sem complicação</span>
+    </header>
+
+    <main class="pt-12 sm:pt-16">
+      <section aria-labelledby="page-title" class="max-w-3xl">
+        <p class="uppercase tracking-[.2em] font-bold mb-5 eyebrow">CONSULTA METEOROLÓGICA</p>
+        <h1 id="page-title" class="display leading-[1.12] tracking-tight mb-5 page-title">Descubra como está o tempo lá fora.</h1>
+        <p class="leading-relaxed max-w-xl mb-9 intro">
+          Pesquise qualquer cidade e veja as condições atuais e a previsão para as próximas horas.
+        </p>
+
+        <form id="weather-form" class="flex flex-col sm:flex-row gap-3 max-w-2xl" novalidate>
+          <div class="flex-1">
+            <label class="block font-semibold mb-2" for="city-input">Qual cidade você quer consultar?</label>
+            <div class="relative">
+              <i data-lucide="map-pin" aria-hidden="true" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#72948a]"></i>
+              <input
+                id="city-input"
+                class="search-field w-full rounded-2xl py-4 pl-12 pr-4"
+                type="search"
+                autocomplete="off"
+                required
+                maxlength="100"
+                placeholder="Ex.: Salvador, Lisboa, Tóquio"
+              >
+            </div>
+          </div>
+          <button id="search-button" class="search-button self-stretch sm:self-end rounded-2xl px-8 py-4 font-bold min-h-[58px]" type="submit">
+            Ver previsão
+          </button>
+        </form>
+
+        <p id="status" role="status" aria-live="polite" class="mt-5 min-h-6 status"></p>
+      </section>
+
+      <section id="results" aria-label="Resultado meteorológico" class="hidden mt-10 sm:mt-14 fade-in">
+        <div class="result-card rounded-[2rem] p-7 sm:p-10 text-white overflow-hidden relative">
+          <div class="decoration-circle circle-one"></div>
+          <div class="decoration-circle circle-two"></div>
+
+          <div class="relative flex flex-col md:flex-row md:justify-between gap-7">
+            <div>
+              <p class="uppercase tracking-[.18em] font-bold mb-3 current-label">AGORA NA SUA CIDADE</p>
+              <h2 id="location" class="display leading-tight break-words"></h2>
+              <p id="local-time" class="mt-2 local-time"></p>
+            </div>
+
+            <div class="md:text-right">
+              <div class="flex md:justify-end items-center gap-4">
+                <span id="weather-icon" class="text-5xl sm:text-6xl" aria-hidden="true"></span>
+                <span id="temperature" class="display text-6xl sm:text-7xl leading-none"></span>
+              </div>
+              <p id="condition" class="mt-3 condition"></p>
+            </div>
+          </div>
+
+          <div class="relative grid grid-cols-2 lg:grid-cols-4 gap-5 mt-9 pt-6 metric">
+            <div>
+              <p class="metric-label mb-2">Sensação térmica</p>
+              <p id="feels-value" class="font-bold text-2xl"></p>
+            </div>
+            <div>
+              <p class="metric-label mb-2">Umidade</p>
+              <p id="humidity-value" class="font-bold text-2xl"></p>
+            </div>
+            <div>
+              <p class="metric-label mb-2">Vento</p>
+              <p id="wind-value" class="font-bold text-2xl"></p>
+            </div>
+            <div>
+              <p class="metric-label mb-2">Precipitação</p>
+              <p id="rain-value" class="font-bold text-2xl"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10">
+          <h2 class="display mb-5 forecast-title">Nas próximas horas</h2>
+          <div id="hourly-list" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"></div>
+        </div>
+      </section>
+
+      <p class="mt-12 source-note">
+        Dados meteorológicos fornecidos pela Open-Meteo. Horários exibidos no fuso local da cidade.
+      </p>
+    </main>
+  </div>
+</body>
+
+
+</html>

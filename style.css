@@ -1,0 +1,178 @@
+:root {
+  --ink: #103833;
+  --muted: #58746e;
+  --cream: #f4f6ed;
+  --lime: #d7ef8d;
+  --line: #dce5db;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  color: var(--ink);
+}
+
+.app-shell {
+  width: 100%;
+  min-height: 100vh;
+  background: radial-gradient(circle at 85% 10%, #e1f3d9 0%, transparent 35%), var(--cream);
+}
+
+.display {
+  font-family: "Fraunces", serif;
+}
+
+.brand-name {
+  color: var(--ink);
+  font-size: 19px;
+}
+
+.header-note {
+  color: #476960;
+  font-size: 13px;
+}
+
+.eyebrow {
+  color: #39836a;
+  font-size: 12px;
+}
+
+.page-title {
+  color: var(--ink);
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.intro {
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.search-field {
+  background: #fff;
+  border: 1px solid #cadbd0;
+  color: var(--ink);
+  font: inherit;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.search-field:focus {
+  outline: none;
+  border-color: #287766;
+  box-shadow: 0 0 0 4px #28776620;
+}
+
+button:focus-visible {
+  outline: 3px solid #357965;
+  outline-offset: 3px;
+}
+
+.search-button {
+  background: var(--lime);
+  color: var(--ink);
+  font-size: 16px;
+  transition: transform .2s, filter .2s;
+}
+
+.search-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.search-button:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+.status {
+  color: #526e66;
+}
+
+.result-card {
+  background: linear-gradient(135deg, #153e38, #0b2d2a);
+  box-shadow: 0 28px 65px #113b3326;
+}
+
+.decoration-circle {
+  position: absolute;
+  border: 1px solid #ffffff1a;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.circle-one {
+  width: 18rem;
+  height: 18rem;
+  top: -5rem;
+  right: -5rem;
+}
+
+.circle-two {
+  width: 13rem;
+  height: 13rem;
+  top: -1.25rem;
+  right: -1.25rem;
+}
+
+.current-label {
+  color: var(--lime);
+  font-size: 12px;
+}
+
+.local-time,
+.metric-label {
+  color: #b8d4c8;
+}
+
+.condition {
+  color: #e7f4e5;
+}
+
+.metric {
+  border-top: 1px solid #ffffff2e;
+}
+
+.hour-card {
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.forecast-title {
+  color: var(--ink);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.source-note {
+  color: #658078;
+  font-size: 12px;
+}
+
+.fade-in {
+  animation: rise .45s ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    animation: none;
+  }
+
+  .search-button {
+    transition: none;
+  }
+}
